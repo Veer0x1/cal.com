@@ -31,9 +31,11 @@ const tabs: HorizontalTabItemProps[] = [
 function AppsSearch({
   onChange,
   className,
+  placeholder,
 }: {
   onChange: ChangeEventHandler<HTMLInputElement>;
   className?: string;
+  placeholder?: string;
 }) {
   return (
     <TextField
@@ -43,6 +45,7 @@ function AppsSearch({
       containerClassName={classNames("focus:!ring-offset-0 m-1", className)}
       type="search"
       autoComplete="false"
+      placeholder={placeholder}
       onChange={onChange}
     />
   );
@@ -63,7 +66,11 @@ export default function Apps({ categories, appStore }: inferSSRProps<typeof getS
             <HorizontalTabs tabs={tabs} />
           </div>
           <div>
-            <AppsSearch className={className} onChange={(e) => setSearchText(e.target.value)} />
+            <AppsSearch
+              className={className}
+              placeholder={t("Search apps")}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
           </div>
         </div>
       )}
